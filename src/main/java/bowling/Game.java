@@ -18,14 +18,21 @@ public class Game {
         } else {
             throw new IllegalArgumentException("Wrong number of parameters sent");
         }
-        frames.add(nextFrame);
-        if (firstFrame == null) {
-            firstFrame = nextFrame;
+
+        if (frames.size() < 1033) {
+            System.out.println(frames.size());
+            frames.add(nextFrame);
+            nextFrame.isBonus(false);
+            if (firstFrame == null) {
+                firstFrame = nextFrame;
+            } else {
+                currentFrame.setNext(nextFrame);
+            }
         } else {
-            currentFrame.setNext(nextFrame);
+            System.out.println(frames.size());
+            nextFrame.isBonus(true);
         }
         currentFrame = nextFrame;
-
     }
 
     public int total() {
