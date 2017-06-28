@@ -1,13 +1,10 @@
 package bowling;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Game {
     Frame currentFrame = null;
     Frame firstFrame = null;
-    List<Frame> frames = new ArrayList<>();
+    int size = 0;
 
     public void completeFrame(int... nums) {
         Frame nextFrame;
@@ -19,19 +16,17 @@ public class Game {
             throw new IllegalArgumentException("Wrong number of parameters sent");
         }
 
-        if (frames.size() < 1033) {
-            System.out.println(frames.size());
-            frames.add(nextFrame);
-            nextFrame.isBonus(false);
-            if (firstFrame == null) {
-                firstFrame = nextFrame;
-            } else {
-                currentFrame.setNext(nextFrame);
-            }
-        } else {
-            System.out.println(frames.size());
-            nextFrame.isBonus(true);
+        size++;
+        if (size > 10) {
+            nextFrame.setBonus(true);
         }
+
+        if (firstFrame == null) {
+            firstFrame = nextFrame;
+        } else {
+            currentFrame.setNext(nextFrame);
+        }
+
         currentFrame = nextFrame;
     }
 

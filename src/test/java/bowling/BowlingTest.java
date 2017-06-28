@@ -1,7 +1,8 @@
 package bowling;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.Ignore;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 
 public class BowlingTest {
@@ -66,7 +67,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void Wholegame2(){
+    public void ThreeContinueSkrikes(){
         game.completeFrame(10);
         game.completeFrame(10);
         game.completeFrame(10);
@@ -88,6 +89,22 @@ public class BowlingTest {
         game.completeFrame(10);
         game.completeFrame(8,1);
         assertEquals(167, game.total());
+    }
+
+    @Test
+    public void LastSpare(){
+        game.completeFrame(10);
+        game.completeFrame(7,3);
+        game.completeFrame(9,0);
+        game.completeFrame(10);
+        game.completeFrame(0,8);
+        game.completeFrame(8,2);
+        game.completeFrame(0,6);
+        game.completeFrame(10);
+        game.completeFrame(10);
+        game.completeFrame(8,2);
+        game.completeFrame(8);
+        assertEquals(156, game.total());
     }
 
     @Test

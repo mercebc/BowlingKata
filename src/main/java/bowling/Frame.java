@@ -29,19 +29,10 @@ public class Frame {
 
     private int twoBalls() {
 
-        if (isStrike() && !bonus) {
-            return 10 + next.ball();
+        if (isStrike()) {
+            return score1 + next.ball();
         }
-
-        if (isStrike() && bonus) {
-            return 0;
-        }
-
-        if (!bonus) {
-            return this.score1 + this.score2;
-        } else {
-            return 0;
-        }
+        return score1 + score2;
     }
 
     public boolean isSpare() {
@@ -52,13 +43,16 @@ public class Frame {
         return score1 == 10;
     }
 
-
     public void setNext(Frame next) {
         this.next = next;
     }
 
-    public void isBonus(boolean bonus) {
+    public void setBonus(boolean bonus) {
         this.bonus = bonus;
+    }
+
+    public boolean isBonus() {
+        return bonus;
     }
 
     public int grandTotal() {
@@ -66,6 +60,10 @@ public class Frame {
         if (next == null) {
             return this.total();
         }
+        if (next.isBonus()) {
+            return this.total();
+        }
+
         return this.total() + next.grandTotal();
 
     }
