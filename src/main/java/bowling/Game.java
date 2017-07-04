@@ -16,10 +16,7 @@ public class Game {
         int score1 = nums[0];
         int score2 = nums.length == 2 ? nums[1] : 0;
 
-        Frame nextFrame =
-            Frames.isStrike(score1) ? new Strike(bonus) :
-            Frames.isSpare(score1, score2) ? new Spare(score1, bonus) :
-               new DisapointingFrame(score1, score2, bonus);
+        Frame nextFrame = Frames.makeFrame(score1, score2, bonus);
 
         if (firstFrame == null) {
             firstFrame = nextFrame;
