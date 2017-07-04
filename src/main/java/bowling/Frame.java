@@ -15,10 +15,10 @@ public class Frame {
 
     public int total() {
 
-        if (isStrike()) {
+        if (Frames.isStrike(score1)) {
             return 10 + next.twoBalls();
         }
-        if (isSpare()) {
+        if (Frames.isSpare(score1, score2)) {
             return 10 + next.ball();
         }
         return score1 + score2;
@@ -30,18 +30,10 @@ public class Frame {
 
     private int twoBalls() {
 
-        if (isStrike()) {
+        if (Frames.isStrike(score1)) {
             return score1 + next.ball();
         }
         return score1 + score2;
-    }
-
-    public boolean isSpare() {
-        return score1 != 10 && score1 + score2 == 10;
-    }
-
-    public boolean isStrike() {
-        return score1 == 10;
     }
 
     public void setNext(Frame next) {
