@@ -2,14 +2,15 @@ package bowling;
 
 
 public class Frame {
-    private int score1;
-    private int score2;
+    private final int score1;
+    private final int score2;
+    private final boolean bonus;
     private Frame next;
-    private boolean bonus;
 
-    public Frame(int score1, int score2) {
+    public Frame(int score1, int score2, boolean bonus) {
         this.score1 = score1;
         this.score2 = score2;
+        this.bonus = bonus;
     }
 
     public int total() {
@@ -47,20 +48,13 @@ public class Frame {
         this.next = next;
     }
 
-    public void setBonus(boolean bonus) {
-        this.bonus = bonus;
-    }
-
-    public boolean isBonus() {
-        return bonus;
-    }
-
     public int grandTotal() {
 
-        if (next == null) {
-            return this.total();
+        if (bonus) {
+            return 0;
         }
-        if (next.isBonus()) {
+
+        if (next == null) {
             return this.total();
         }
 
