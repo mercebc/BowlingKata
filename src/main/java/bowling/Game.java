@@ -7,19 +7,16 @@ public class Game {
     int size = 0;
 
     public void completeFrame(int... nums) {
-        Frame nextFrame;
-        if (nums.length == 1) {
-            nextFrame = new Frame(nums[0], 0);
-        } else if (nums.length == 2) {
-            nextFrame = new Frame(nums[0], nums[1]);
-        } else {
+
+        if (nums.length < 1 || nums.length > 2) {
             throw new IllegalArgumentException("Wrong number of parameters sent");
         }
 
-        size++;
-        if (size > 10) {
-            nextFrame.setBonus(true);
-        }
+        boolean bonus = size >= 10;
+        int score1 = nums[0];
+        int score2 = nums.length == 2 ? nums[1] : 0;
+
+        Frame nextFrame = Frames.makeFrame(score1, score2, bonus);
 
         if (firstFrame == null) {
             firstFrame = nextFrame;
@@ -28,6 +25,7 @@ public class Game {
         }
 
         currentFrame = nextFrame;
+        size++;
     }
 
     public int total() {
